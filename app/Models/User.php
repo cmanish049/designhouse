@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
-use Tymon\JWTAuth\Contracts\JWTSubject;
+use Grimzy\LaravelMysqlSpatial\Eloquent\SpatialTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable;
+    use Notifiable, SpatialTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -23,8 +24,11 @@ class User extends Authenticatable implements JWTSubject
         'tagline',
         'about',
         'username',
-        'location',
         'available_to_hire',
+    ];
+
+    protected $spatialFields = [
+        'location',
     ];
 
     /**
