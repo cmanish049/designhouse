@@ -6,7 +6,7 @@ use App\Http\Controllers\Auth\VerificationController;
 use Illuminate\Support\Facades\Route;
 
 // public routes
-
+Route::get('me', '\App\Http\Controllers\User\MeController')->name('me');
 // routes for authenticated users
 Route::group(['middleware' => ['auth:api']], function() {
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
