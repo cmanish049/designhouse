@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\Designs\UploadController;
 use App\Http\Controllers\User\SettingController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,9 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
     Route::put('settings/profile', [SettingController::class, 'updateProfile']);
     Route::put('settings/password', [SettingController::class, 'updatePassword']);
+
+    // upload designs
+    Route::post('designs', [UploadController::class, 'upload']);
 });
 
 // routes for guests only
