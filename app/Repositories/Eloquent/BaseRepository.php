@@ -68,7 +68,7 @@ abstract class BaseRepository implements IBase, ICriteria
         foreach($criterias as $criterion) {
             $this->model = $criterion->apply($this->model);
         }
-        return $this->model;
+        return $this;
     }
 
     protected function getModelClass()
