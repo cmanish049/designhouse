@@ -31,6 +31,12 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::post('designs', [UploadController::class, 'upload']);
     Route::put('designs/{id}', [DesignController::class, 'update']);
     Route::delete('designs/{id}', [DesignController::class, 'destroy']);
+
+    // Like and dislike
+    Route::post('designs/{id}/like', [DesignController::class, 'like']);
+    Route::get('designs/{id}/liked', [DesignController::class, 'checkIfUserHasLiked']);
+
+    // comments
     Route::post('designs/{id}/comments', [CommentController::class, 'store']);
     Route::put('comments/{id}', [CommentController::class, 'update']);
     Route::delete('comments/{id}', [CommentController::class, 'destroy']);

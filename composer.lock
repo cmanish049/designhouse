@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d4deaf3e8c345604d22c1bb1c2ce803",
+    "content-hash": "440f96ec82cbaeb4808ca76ce2873a94",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4560,6 +4560,46 @@
                 "webprofiler"
             ],
             "time": "2020-05-05T10:53:32+00:00"
+        },
+        {
+            "name": "cmanish049/artisan-make",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cmanish049/artisan-make.git",
+                "reference": "68743d26e6730bca650a2ed2b595fababe7bcaf2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cmanish049/artisan-make/zipball/68743d26e6730bca650a2ed2b595fababe7bcaf2",
+                "reference": "68743d26e6730bca650a2ed2b595fababe7bcaf2",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "cmanish049\\ArtisanMake\\ArtisanMakeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "cmanish049\\ArtisanMake\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "cmanish049",
+                    "email": "cmanish049@gmail.com"
+                }
+            ],
+            "description": "This package creates traits, services scaffolding using artisan command",
+            "time": "2020-05-05T16:55:44+00:00"
         },
         {
             "name": "doctrine/instantiator",
