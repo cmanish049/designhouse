@@ -8,6 +8,8 @@ use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Designs\CommentController;
 use App\Http\Controllers\Designs\DesignController;
 use App\Http\Controllers\Designs\UploadController;
+use App\Http\Controllers\Teams\InvitationController;
+use App\Http\Controllers\Teams\TeamController;
 use App\Http\Controllers\User\SettingController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +22,8 @@ Route::get('designs', [DesignController::class, 'index']);
 Route::get('designs/{id}', [DesignController::class, 'show']);
 // get users
 Route::get('users', [UserController::class, 'index']);
+
+Route::get('teams/{slug}', [TeamController::class, 'findBySlug']);
 
 // routes for authenticated users
 Route::group(['middleware' => ['auth:api']], function() {
@@ -40,6 +44,21 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::post('designs/{id}/comments', [CommentController::class, 'store']);
     Route::put('comments/{id}', [CommentController::class, 'update']);
     Route::delete('comments/{id}', [CommentController::class, 'destroy']);
+
+    Route::post('teams', [TeamController::class, 'store']);
+    Route::get('teams', [TeamController::class, 'index']);
+    Route::get('users/teams', [TeamController::class, 'fetchUserTeams']);
+    Route::get('teams-by-id/{id}', [TeamController::class, 'findById']);
+    Route::put('teams/{id}', [TeamController::class, 'update']);
+    Route::delete('teams/{id}', [TeamController::class, 'destroy']);
+
+    // invitations
+    Route::post('invitations/{teamId}', [InvitationController::class, 'invite']);
+    Route::post('invitations/{id}/resend', [InvitationController::class, 'resend']);
+    Route::post('invitations/{id}/respond', [InvitationController::class, 'respond']);
+    Route::delete('invitations/{id}', [InvitationController::class, 'destroy']);
+    Route::delete('teams/{team_id}/user/{user_id}', [TeamController::class, 'removeFromTeam']);
+
 });
 
 // routes for guests only
