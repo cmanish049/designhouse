@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\Chats\ChatController;
 use App\Http\Controllers\Designs\CommentController;
 use App\Http\Controllers\Designs\DesignController;
 use App\Http\Controllers\Designs\UploadController;
@@ -59,6 +60,12 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::delete('invitations/{id}', [InvitationController::class, 'destroy']);
     Route::delete('teams/{team_id}/user/{user_id}', [TeamController::class, 'removeFromTeam']);
 
+    // Chats
+    Route::post('chats', [ChatController::class, 'sendMessage']);
+    Route::get('chats', [ChatContoller::class, 'getUserChats']);
+    Route::get('chats/{id}/messages', [ChatContoller::class, 'getChatMessages']);
+    Route::put('chats/{id}/mark-as-read', [ChatContoller::class, 'markAsRead']);
+    Route::delete('messages/{id}', [ChatContoller::class, 'destroyMessage']);
 });
 
 // routes for guests only
