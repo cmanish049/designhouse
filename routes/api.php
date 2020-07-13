@@ -26,6 +26,11 @@ Route::get('users', [UserController::class, 'index']);
 
 Route::get('teams/{slug}', [TeamController::class, 'findBySlug']);
 
+// Search Designs
+Route::get('search/designs', [DesignController::class, 'search']);
+Route::get('search/designers', [UserController::class, 'search']);
+
+
 // routes for authenticated users
 Route::group(['middleware' => ['auth:api']], function() {
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
