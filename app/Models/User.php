@@ -55,6 +55,15 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         'available_to_hire' => 'bool',
     ];
 
+    protected $appends = [
+        'photo_url'
+    ];
+
+    public function getPhotoUrlAttribute()
+    {
+        return 'https://www.gravatar.com/avatar/'. md5(strtolower(trim($this->email))). '.jpg?s=200&d=mm';
+    }
+
     /**
      * Send the email verification notification.
      *

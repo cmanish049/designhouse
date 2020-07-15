@@ -32,6 +32,7 @@ class UserResource extends JsonResource
             'tagline' => $this->tagline,
             'about' => $this->about,
             'available_to_hire' => $this->available_to_hire,
+            'photo_url' => $this->photo_url,
         ];
     }
 }

@@ -21,10 +21,14 @@ Route::get('me', '\App\Http\Controllers\User\MeController')->name('me');
 // Get designs
 Route::get('designs', [DesignController::class, 'index']);
 Route::get('designs/{id}', [DesignController::class, 'show']);
+Route::get('designs/slug{slug}', [DesignController::class, 'findBySlug']);
 // get users
 Route::get('users', [UserController::class, 'index']);
+Route::get('users/{username}', [UserController::class, 'findByUsername']);
+Route::get('users/{id}/designs', [DesignController::class, 'getUserDesigns']);
 
 Route::get('teams/{slug}', [TeamController::class, 'findBySlug']);
+Route::get('teams/{id}/designs', [DesignController::class, 'getForTeam']);
 
 // Search Designs
 Route::get('search/designs', [DesignController::class, 'search']);
