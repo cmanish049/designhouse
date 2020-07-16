@@ -23,17 +23,17 @@ class VerificationController extends Controller
 
     public function verify(Request $request, User $user)
     {
-        if (! URL::hasValidSignature($request)) {
+        if (!URL::hasValidSignature($request)) {
             return response()->json([
                 'errors' => [
-                    "message" => "invalid verification link",
+                    "message" => "invalid verification link or signature",
                 ]
             ], 422);
         }
 
         if ($user->hasVerifiedEmail()) {
             return response()->json(['errors' => [
-                "email" => "Email address already verified",
+                "message" => "Email address already verified",
             ]], 422);
         }
         $user->markEmailAsVerified();
@@ -47,14 +47,14 @@ class VerificationController extends Controller
             'email' => ['email', 'required']
         ]);
         $user = User::where('email', $request->email)->first();
-        if (! $user) {
+        if (!$user) {
             return response()->json(['errors' => [
-                'email' => 'No user could be found with this email address'
+                'message' => 'No user could be found with this email address'
             ]], 204);
         }
         if ($user->hasVerifiedEmail()) {
             return response()->json(['errors' => [
-                "email" => "Email address already verified",
+                "message" => "Email address already verified",
             ]], 422);
         }
         $user->sendEmailVerificationNotification();

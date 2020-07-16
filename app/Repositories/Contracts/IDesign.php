@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Contracts;
 
+use App\Repositories\Criteria\ICriteria;
 use Illuminate\Http\Request;
 
 interface IDesign extends IBase
